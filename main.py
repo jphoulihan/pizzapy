@@ -9,26 +9,23 @@ def main():
         read_csv = csv.reader(csvfile, delimiter=',')        
         deliveries = [Delivery(order[0], order[1], order[2], order[3], order[4]) for order in read_csv]
         deliveries.insert(0, Delivery(0, "Apache", 0, 53.38133, -6.59299))
+        size = len(deliveries)
 
-        for i in deliveries:
-            print(i.__dict__)
-
-        c_1, c_2 = 0, 0
+        print(size)
         routes = []
-        while(c_1 < len(deliveries)):
+        for i in range(size):
             row = []
-            while(c_2 < len(deliveries)):
-                time_taken = dist_to_time(deliveries[c_1], deliveries[c_2])
-                route = Route(c_1, c_2, time_taken)
+            for j in range(size):
+                time_secs = dist_to_time(deliveries[i], deliveries[j])
+                route = Route(i, j, time_secs)
                 row.append(route)
-                c_2 += 1
             routes.append(row)
-            c_2 = 0
-            c_1 += 1
         
-        for i in routes:
-            for j in i:
-                print(j.__dict__)
+    
+        for i in routes:  # outer loop  
+            for j in i:  # inner loop               
+                print(f'[{j.row}][{j.col}] {j.time_taken}', end = " ") # print the elements  
+            print()
 
 
 if __name__ == '__main__':
