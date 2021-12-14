@@ -13,11 +13,22 @@ def main():
         for i in deliveries:
             print(i.__dict__)
 
-    print(dist_to_time(deliveries[0], deliveries[0]))
-    print(dist_to_time(deliveries[0], deliveries[1]))
-    print(dist_to_time(deliveries[0], deliveries[2]))
-    print(dist_to_time(deliveries[0], deliveries[3]))
-    print(dist_to_time(deliveries[0], deliveries[4]))
+        c_1, c_2 = 0, 0
+        routes = []
+        while(c_1 < len(deliveries)):
+            row = []
+            while(c_2 < len(deliveries)):
+                time_taken = dist_to_time(deliveries[c_1], deliveries[c_2])
+                route = Route(c_1, c_2, time_taken)
+                row.append(route)
+                c_2 += 1
+            routes.append(row)
+            c_2 = 0
+            c_1 += 1
+        
+        for i in routes:
+            for j in i:
+                print(j.__dict__)
 
 
 if __name__ == '__main__':
