@@ -1,7 +1,7 @@
 # **PIZZA DELIVERY IN PYTHON** 
 
 ## **Description** 
-_Converting a Java app that plans delivery routes to Python_<br/><br/>
+_Converting an app that plans delivery routes, from Java to Python_<br/><br/>
 
 ## **Project Goal**
 Improve on a previous project with this iteration and devlop more appealing graphics for the client to visualize the delivery route outputted by the application<br/><br/>
