@@ -24,6 +24,6 @@ def dist_to_time(deliver_a, deliver_b):
     # unit = 2 * math.asin(math.sqrt(temp))
     one = 6371000 * unit
     res = round((one/ 1000.0), 3)
-    seconds = 60 * res
+    seconds = round((60 * res), 2)
 
     return seconds
