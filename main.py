@@ -22,24 +22,21 @@ def main():
             routes.append(row)
         
     
+        print('__Unsorted Time Matrix__')
         for i in routes:  # outer loop  
             for j in i:  # inner loop               
                 print(f'[{j.row}][{j.col}] {j.time_taken}', end = " ") # print the elements  
             print()
         
         for i in range(size):
-            print(routes[0][i].time_taken)
+            routes[i] = sorted(routes[i], key=operator.attrgetter("time_taken"))
         
-        print(routes[0][0].time_taken)
-        print(routes[0][0])
-        
-        new_l = sorted(routes[0], key=operator.attrgetter("time_taken"))
+        print('\n__Sorted Time Matrix__')
 
-        print(new_l[0].time_taken)
-
-
-
-
+        for i in routes:  # outer loop  
+            for j in i:  # inner loop               
+                print(f'[{j.row}][{j.col}] {j.time_taken}', end = " ") # print the elements  
+            print()
 
 if __name__ == '__main__':
     main()
