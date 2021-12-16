@@ -1,5 +1,6 @@
 import csv
 import operator
+import datetime
 from distance_to_time import dist_to_time
 from print_matrix import print_matrix
 from nearest_neighbour import fastest_route_by_order_num
@@ -35,8 +36,15 @@ def main():
         fastest_route = fastest_route_by_order_num(routes, size)
 
         print('\n__Fastest Route By Order Number__')
-        print(fastest_route)
 
+        for i in range(size-1):
+            print(fastest_route[i].col, end=', ')
+
+        total_secs = sum(x.time_taken for x in fastest_route)
+        conversion = datetime.timedelta(seconds=total_secs)
+        converted_time = str(conversion)
+
+        print('\n\n__Total Delivery Time__\n', converted_time)
 
 if __name__ == '__main__':
     main()
