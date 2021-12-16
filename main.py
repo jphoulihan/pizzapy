@@ -2,6 +2,7 @@ import csv
 import operator
 from distance_to_time import dist_to_time
 from print_matrix import print_matrix
+from nearest_neighbour import fastest_route_by_order_num
 from delivery import Delivery
 from route import Route
 
@@ -30,11 +31,11 @@ def main():
         
         print('\n__Sorted Time Matrix__')
         print_matrix(routes)
-        
-        fastest_route = [min(routes[0][1:], key=operator.attrgetter("time_taken"))]
-        #next stop is the col of the current min_time 
-        #if col exists in list move to next element
-        print(fastest_route[0].__dict__)
+
+        fastest_route = fastest_route_by_order_num(routes, size)
+
+        print('\n__Fastest Route By Order Number__')
+        print(fastest_route)
 
 
 if __name__ == '__main__':
