@@ -1,6 +1,7 @@
 import csv
 import operator
 from distance_to_time import dist_to_time
+from print_matrix import print_matrix
 from delivery import Delivery
 from route import Route
 
@@ -21,22 +22,20 @@ def main():
                 row.append(route)
             routes.append(row)
         
-    
         print('__Unsorted Time Matrix__')
-        for i in routes:  # outer loop  
-            for j in i:  # inner loop               
-                print(f'[{j.row}][{j.col}] {j.time_taken}', end = " ") # print the elements  
-            print()
+        print_matrix(routes)
         
         for i in range(size):
             routes[i] = sorted(routes[i], key=operator.attrgetter("time_taken"))
         
         print('\n__Sorted Time Matrix__')
+        print_matrix(routes)
+        
+        fastest_route = [min(routes[0][1:], key=operator.attrgetter("time_taken"))]
+        #next stop is the col of the current min_time 
+        #if col exists in list move to next element
+        print(fastest_route[0].__dict__)
 
-        for i in routes:  # outer loop  
-            for j in i:  # inner loop               
-                print(f'[{j.row}][{j.col}] {j.time_taken}', end = " ") # print the elements  
-            print()
 
 if __name__ == '__main__':
     main()
