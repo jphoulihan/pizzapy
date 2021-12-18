@@ -1,19 +1,17 @@
-import operator
-
 def fastest_route_by_order_num(routes, size):
 
-    short_time = [min(routes[0][1:], key=operator.attrgetter("time_taken"))]
-    fastest_route = [short_time[0].col]
-    fastest_route_obj = [short_time[0]]
+    fast_rut = [0]
+    fast_rut_obj = []
 
-    for i in range(size):
-        for j in range(size):
-            if routes[i][j].time_taken != 0.0 and routes[i][j].col not in fastest_route: #ignores first case where origin and dest are same and inserts if col not in fast list
-                fastest_route.append(routes[i][j].col)
-                fastest_route_obj.append(routes[i][j])
-
-                i = routes[i][j].col #jumps to next row where row num == col num
-                j = 0 #traverse row again
+    for row in range(size):
+        for col in range(size):
+            if routes[row][col].time_taken != 0 and not fast_rut.__contains__(routes[row][col].col): #ignores first case where origin and dest are same and inserts if col not in fast list
+            
+                    fast_rut.append(routes[row][col].col)
+                    fast_rut_obj.append(routes[row][col])
+                    
+                    row = routes[row][col].col
+                    col = 0 #traverse row again
         
-    fastest_route = fastest_route_obj[:-1]#starting point of delivery not included
-    return fastest_route
+    # fast_rut = fast_rut[:-1]#starting point of delivery not included
+    return fast_rut, fast_rut_obj
