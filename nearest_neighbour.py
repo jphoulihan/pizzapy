@@ -12,6 +12,4 @@ def fastest_route_by_order_num(routes, size):
                     
                     row = routes[row][col].col
                     col = 0 #traverse row again
-        
-    # fast_rut = fast_rut[:-1]#starting point of delivery not included
     return fast_rut, fast_rut_obj

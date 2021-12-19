@@ -21,6 +21,10 @@ $ git clone https://github.com/jphoulihan/pizzapy.git
 ```
 <br/>
 
+### **Sample Graph Work In Progress**
+
+![alt text](graph-ex.png "samp graph")<br/>
+
 # **Learning Outcomes**
 * Animated graphics with Matplotlib
 * Reading csv files and manipulating their contents

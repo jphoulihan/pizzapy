@@ -1,11 +1,13 @@
 import csv
 import operator
-import datetime
+import copy
 from distance_to_time import dist_to_time
+from plot_coordinates import plot_coords
 from print_matrix import print_matrix
 from nearest_neighbour import fastest_route_by_order_num
 from delivery import Delivery
 from route import Route
+from total_time import total_time
 
 def main():
     
@@ -26,14 +28,16 @@ def main():
         
         print('__Unsorted Time Matrix__')
         print_matrix(routes)
+
+        sorted_routes = copy.deepcopy(routes)
         
         for i in range(size):
-            routes[i] = sorted(routes[i], key=operator.attrgetter("time_taken"))
+            sorted_routes[i] = sorted(sorted_routes[i], key=operator.attrgetter("time_taken"))
         
         print('\n__Sorted Time Matrix__')
-        print_matrix(routes)
+        print_matrix(sorted_routes)
 
-        fastest_route, fastest_route_obj = fastest_route_by_order_num(routes, size)
+        fastest_route, fastest_route_obj = fastest_route_by_order_num(sorted_routes, size)
         print(len(fastest_route))
         print('\n__Fastest Route By Order Number__')
 
@@ -44,6 +48,13 @@ def main():
         for i in fastest_route_obj:
             print(f'[{i.row, i.col}]{i.time_taken}', end='\n')#incorrect output should be [5][4] 435.6 instead of [(1, 5)]422.88
 
+        total_time(fastest_route_obj)
+        plot_coords(fastest_route_obj, fastest_route, deliveries, size)
+
+        #go to deliveries and get address by order number
+        #add address to list
+
+
         #[(0, 2)]33.6
         #[(2, 1)]115.08
         #[(1, 5)]422.88
@@ -52,15 +63,6 @@ def main():
         #[6][3]  76.32
 
         #total time should be 1500.03
-
-        total_secs = sum(x.time_taken for x in fastest_route_obj[1:])
-        print('\n\n')
-        print(total_secs)
-        conversion = datetime.timedelta(seconds=total_secs)
-        converted_time = str(conversion)
-
-        print('\n\n__Total Delivery Time__\n', converted_time)
-
 if __name__ == '__main__':
     main()
 
